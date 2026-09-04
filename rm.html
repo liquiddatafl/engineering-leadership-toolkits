@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/icon_favicon.png">
+  <link rel="apple-touch-icon" href="/icon_favicon.png">
+  <title>Engineering Leadership Toolkits</title>
+
+  <meta
+    name="description"
+    content="Practical tools for engineering managers and tech leads. Lightweight frameworks, templates, and guides for clearer engineering leadership decisions."
+  />
+
+  <style>
+    :root {
+      --green: #356854;
+      --green-dark: #254b3d;
+      --green-light: #eaf3ee;
+      --green-soft: #f4f8f6;
+      --text: #24302b;
+      --muted: #64716b;
+      --border: #d9e1dd;
+      --white: #ffffff;
+      --background: #fafbf9;
+      --shadow: 0 12px 32px rgba(28, 55, 44, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      color: var(--green-dark);
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--green);
+      color: white;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .brand-text {
+      line-height: 1.15;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 3px;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--green-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 100px 0 88px;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(53, 104, 84, 0.08), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, #f4f8f6 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--green);
+      background: var(--green-light);
+      border-radius: 999px;
+      padding: 7px 13px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.7rem, 6vw, 5rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      color: var(--green-dark);
+      max-width: 900px;
+    }
+
+    .hero p {
+      margin: 28px 0 0;
+      max-width: 700px;
+      font-size: 1.25rem;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .button-primary {
+      background: var(--green);
+      color: white;
+    }
+
+    .button-primary:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      background: white;
+      color: var(--green);
+      border: 1px solid var(--border);
+    }
+
+    .button-secondary:hover {
+      border-color: var(--green);
+      transform: translateY(-1px);
+    }
+
+    section {
+      padding: 88px 0;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      color: var(--green-dark);
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 34px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card.featured {
+      border-top: 5px solid var(--green);
+    }
+
+    .product-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 14px;
+    }
+
+    .product-card h3 {
+      margin: 0;
+      font-size: 1.65rem;
+      line-height: 1.2;
+      color: var(--green-dark);
+    }
+
+    .price {
+      margin-top: 12px;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .product-card p {
+      color: var(--muted);
+    }
+
+    .features {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 30px;
+    }
+
+    .features li {
+      padding: 8px 0;
+      border-bottom: 1px solid #edf1ef;
+    }
+
+    .features li::before {
+      content: "✓";
+      color: var(--green);
+      font-weight: 800;
+      margin-right: 10px;
+    }
+
+    .product-card .button {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    .about {
+      background: var(--green-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about h2,
+    .support h2 {
+      margin-top: 0;
+      font-size: 2.25rem;
+      letter-spacing: -0.03em;
+      color: var(--green-dark);
+    }
+
+    .about p,
+    .support p {
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .principles {
+      display: grid;
+      gap: 16px;
+    }
+
+    .principle {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+
+    .principle strong {
+      display: block;
+      color: var(--green-dark);
+      margin-bottom: 3px;
+    }
+
+    .support-card {
+      max-width: 780px;
+      margin: 0 auto;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 42px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .support-email {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--green);
+      font-weight: 750;
+      font-size: 1.08rem;
+    }
+
+    footer {
+      background: var(--green-dark);
+      color: rgba(255, 255, 255, 0.8);
+      padding: 38px 0;
+      font-size: 0.9rem;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-title {
+      color: white;
+      font-weight: 700;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        padding: 72px 0 64px;
+      }
+
+      .products,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        gap: 32px;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .nav-link {
+        display: none;
+      }
+
+      .product-card,
+      .support-card {
+        padding: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="/">
+        <div class="brand-icon">EL</div>
+        <div class="brand-text">
+          Engineering
+          <span>Leadership Toolkits</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/#products">Products</a>
+        <a href="/about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+
+
+  <main>
+
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="eyebrow">Engineering Leadership Toolkits</div>
+
+        <h1>Practical tools for engineering managers and tech leads.</h1>
+
+        <p>
+          Lightweight frameworks, templates, and guides designed to help
+          engineering leaders make clearer decisions, bring structure to
+          complex conversations, and move work forward without adding
+          unnecessary process.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#products">
+            Explore the Toolkits
+          </a>
+
+          <a class="button button-secondary" href="#free-checklist">
+            Get the Free Checklist
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="products">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>Tools built for real engineering decisions.</h2>
+          <p>
+            Ready-to-use resources for teams that need more clarity without
+            another heavyweight process.
+          </p>
+        </div>
+
+        <div class="products">
+
+          <article class="product-card featured">
+            <div class="product-label">Featured Toolkit</div>
+
+            <h3>Technical Debt Prioritization Toolkit</h3>
+
+            <div class="price">$34 · One-time purchase</div>
+
+            <p>
+              A practical framework for scoring competing technical debt,
+              separating value from effort, and deciding what deserves
+              attention now, what belongs on the roadmap, and what can be
+              consciously carried.
+            </p>
+
+            <ul class="features">
+              <li>Technical debt prioritization workbook</li>
+              <li>Automated scoring and priority framework</li>
+              <li>Summary dashboard</li>
+              <li>Completed example workbook</li>
+              <li>Technical Debt Review Guide</li>
+              <li>Printable prioritization worksheet</li>
+              <li>Start Here guide and license documentation</li>
+            </ul>
+
+            <!-- REPLACE THIS URL WITH YOUR FINAL PAID PRODUCT URL -->
+            <a
+              class="button button-primary"
+              href="https://engineeringleadershiptoolkits.lemonsqueezy.com/checkout/buy/a63e3275-4622-474f-9b1f-da125cd0eb05"
+              target="_blank"
+              rel="noopener"
+            >
+              Get the Toolkit
+            </a>
+          </article>
+
+
+          <article class="product-card" id="free-checklist">
+            <div class="product-label">Free Resource</div>
+
+            <h3>Technical Debt Triage Checklist</h3>
+
+            <div class="price">Free</div>
+
+            <p>
+              A one-page checklist to help engineering teams decide which
+              technical debt issues deserve a deeper prioritization
+              conversation.
+            </p>
+
+            <ul class="features">
+              <li>Seven practical triage questions</li>
+              <li>Quick interpretation guidance</li>
+              <li>Separates meaningful debt from code-quality preferences</li>
+              <li>Printable one-page PDF</li>
+            </ul>
+
+            <!-- REPLACE # WITH YOUR FREE LEMON SQUEEZY PRODUCT URL -->
+            <a
+              class="button button-secondary"
+              href="https://engineeringleadershiptoolkits.lemonsqueezy.com/checkout/buy/b2796821-ac5e-4334-bcb6-25e626805668"
+              target="_blank"
+              rel="noopener"
+            >
+              Get the Free Checklist
+            </a>
+          </article>
+
+
+          <article class="product-card" id="release-readiness">
+            <div class="product-label">Free Resource</div>
+
+            <h3>Release Management Readiness Assessment</h3>
+
+            <div class="price">Free</div>
+
+            <p>
+              Assess release management readiness across six key areas,
+              uncover hidden risk, and identify where to improve for safer,
+              more predictable, and more resilient releases.
+            </p>
+
+            <ul class="features">
+              <li>Six release management readiness areas</li>
+              <li>Simple 0–2 scoring model</li>
+              <li>Readiness scorecard and interpretation guidance</li>
+              <li>30-minute team review format</li>
+              <li>Printable PDF assessment</li>
+            </ul>
+
+            <!-- REPLACE # WITH YOUR RELEASE MANAGEMENT LEMON SQUEEZY PRODUCT URL -->
+            <a
+              class="button button-secondary"
+              href="#"
+              target="_blank"
+              rel="noopener"
+            >
+              Get the Free Assessment
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section class="about">
+      <div class="container about-grid">
+
+        <div>
+          <div class="eyebrow">About</div>
+
+          <h2>Useful structure. Less process overhead.</h2>
+
+          <p>
+            Engineering Leadership Toolkits creates practical, ready-to-use
+            resources for engineering managers, technical leads, architects,
+            and growing engineering teams.
+          </p>
+
+          <p>
+            Each toolkit is independently created to help leaders make better
+            decisions, structure important conversations, and turn ambiguity
+            into action.
+          </p>
+        </div>
+
+        <div class="principles">
+
+          <div class="principle">
+            <strong>Practical</strong>
+            Built to be used in real engineering conversations, not just read.
+          </div>
+
+          <div class="principle">
+            <strong>Lightweight</strong>
+            Enough structure to create clarity without adding unnecessary
+            ceremony.
+          </div>
+
+          <div class="principle">
+            <strong>Ready to use</strong>
+            Templates, examples, and guidance are included so teams can get
+            started quickly.
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section class="support">
+      <div class="container">
+
+        <div class="support-card">
+          <div class="eyebrow">Customer Support</div>
+
+          <h2>Questions or need help with a purchase?</h2>
+
+          <p>
+            For product questions, download issues, or support,
+            contact Engineering Leadership Toolkits by email.
+          </p>
+
+          <a
+            class="support-email"
+            href="mailto:beckyvsimmons@gmail.com"
+          >
+            beckyvsimmons@gmail.com
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer>
+    <div class="container footer-content">
+      <div>
+        <span class="footer-title">Engineering Leadership Toolkits</span><br />
+        Practical tools for engineering managers and tech leads.
+      </div>
+
+      <div>
+        &copy; 2026 Rebecca Simmons. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
