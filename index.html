@@ -342,6 +342,44 @@
       margin-bottom: 3px;
     }
 
+    .work-with-me {
+      background: white;
+      border-top: 1px solid var(--border);
+    }
+
+    .work-with-me-card {
+      background: var(--green-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 42px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.2fr auto;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .work-with-me-card h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      color: var(--green-dark);
+    }
+
+    .work-with-me-card p {
+      margin: 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .work-with-me-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
     .support-card {
       max-width: 780px;
       margin: 0 auto;
@@ -386,7 +424,8 @@
       }
 
       .products,
-      .about-grid {
+      .about-grid,
+      .work-with-me-card {
         grid-template-columns: 1fr;
       }
 
@@ -403,8 +442,13 @@
       }
 
       .product-card,
+      .work-with-me-card,
       .support-card {
         padding: 26px;
+      }
+
+      .work-with-me-actions {
+        justify-content: flex-start;
       }
     }
   </style>
@@ -425,7 +469,7 @@
       <nav class="nav-links">
         <a href="/">Home</a>
         <a href="/#products">Products</a>
-        <a href="/workwithme.html">Work With Me</a>
+        <a href="/work-with-me.html">Work With Me</a>
         <a href="/about.html">About</a>
       </nav>
     </div>
@@ -619,6 +663,30 @@
             started quickly.
           </div>
 
+        </div>
+      </div>
+    </section>
+
+
+    <section class="work-with-me">
+      <div class="container">
+        <div class="work-with-me-card">
+          <div>
+            <div class="eyebrow">Work With Me</div>
+            <h2>Sometimes it helps to talk the problem through.</h2>
+            <p>
+              I offer focused mentorship and advisory sessions for engineering
+              managers, tech leads, architects, and teams navigating leadership,
+              delivery, governance, release management, technical debt, and
+              platform strategy challenges.
+            </p>
+          </div>
+
+          <div class="work-with-me-actions">
+            <a class="button button-primary" href="/work-with-me.html">
+              Explore Ways to Work Together
+            </a>
+          </div>
         </div>
       </div>
     </section>
