@@ -708,3 +708,101 @@ main .hero .container:not(.hero-content) > p {
     width: min(220px, 70vw);
   }
 }
+
+
+/* Refined About page */
+.credibility-line {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  max-width: 760px;
+  color: var(--green-dark);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.content-grid {
+  grid-template-columns: minmax(0, 1.65fr) minmax(240px, 0.55fr);
+  gap: 44px;
+}
+
+.about-intro {
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 36px;
+}
+
+.about-photo {
+  width: 240px;
+  aspect-ratio: 4 / 5;
+}
+
+.sidebar-card {
+  padding: 24px;
+}
+
+.sidebar-card li {
+  padding: 6px 0;
+}
+
+.about-work {
+  background: var(--green-soft);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.about-work-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  box-shadow: var(--shadow);
+}
+
+.about-work-card h2 {
+  margin: 0 0 10px;
+  color: var(--green-dark);
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.about-work-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.06rem;
+  max-width: 680px;
+}
+
+@media (max-width: 950px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar-card {
+    max-width: 680px;
+  }
+}
+
+@media (max-width: 720px) {
+  .about-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo {
+    width: min(240px, 72vw);
+  }
+
+  .about-work-card {
+    grid-template-columns: 1fr;
+    padding: 28px;
+  }
+
+  .about-work-card .button {
+    justify-self: start;
+  }
+}
