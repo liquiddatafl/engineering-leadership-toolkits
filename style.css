@@ -669,3 +669,42 @@ main .hero .container:not(.hero-content) > p {
     flex-shrink: 0;
   }
 }
+
+
+/* About portrait */
+.about-intro {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.about-photo {
+  width: 180px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* Three Work With Me offerings */
+.offers {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 950px) {
+  .offers {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .about-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo {
+    width: min(220px, 70vw);
+  }
+}
